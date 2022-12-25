@@ -1,30 +1,74 @@
---
--- GENERAL SETTINGS
---
-vim.o.errorbells = true               -- never play error bells in the terminal
-vim.o.wildmenu = true                 -- enables "enhanced mode" of command-line completion
-vim.o.laststatus = 2                  -- always show the status line
--- vim.o.showtabline = 2                 -- always show the tabline
-vim.o.colorcolumn = '80'              -- show a column at column 80
-vim.cmd("syntax on")                  -- enables syntax highlighting
-vim.cmd("filetype plugin indent on")  -- enable auto filetype detection, automatic loading plugins and ident mode
-vim.o.nu = true                       -- always show line numbers
-vim.o.rnu = true                      -- use relative lines
-vim.o.updatetime = 250                -- decrease update time
-vim.o.signcolumn = 'yes'              -- show signcolumn before the line number column
-vim.o.termguicolors = true            -- set terminal colors
-vim.o.scrolloff = 10                  -- number of lines to keep between cursor and corner when scrolling
-vim.o.sidescrolloff = 10              -- number of columns to keep between cursor and corner when scrolling
-vim.o.mouse = "a"                     -- enable mouse
-vim.o.hidden = true -- stop complaining when you switch between unsafed buffers
-vim.o.list = true -- show all whitespaces as visible characters
-vim.o.swapfile = false -- disables swap files
-vim.o.backup = false -- disables backup files
-vim.o.undodir = "~/.local/share/nvim/undodir" -- defines an undodir
-vim.o.undofile = false -- disable individual undofiles
-vim.o.encoding = "utf-8" -- default file encoding
-vim.o.fileformat = "unix" -- default file format (line endings)
-vim.o.autoread = true -- reads the file in the buffer when modified outside vim
+-- never play error bells in the terminal
+vim.o.errorbells = true
+
+-- enables "enhanced mode" of command-line completion
+vim.o.wildmenu = true
+
+-- always show the status line
+vim.o.laststatus = 2
+
+-- always show the tabline
+-- vim.o.showtabline = 2
+
+-- show a column at column 80
+vim.o.colorcolumn = '80'
+
+-- enables syntax highlighting
+vim.cmd("syntax on")
+
+-- enable auto filetype detection, automatic loading plugins and ident mode
+vim.cmd("filetype plugin indent on")
+
+-- always show line numbers
+vim.o.nu = true
+
+-- use relative lines
+vim.o.rnu = true
+
+-- decrease update time
+vim.o.updatetime = 250
+
+-- show signcolumn before the line number column
+vim.o.signcolumn = 'yes'
+
+-- set terminal colors
+vim.o.termguicolors = true
+
+-- number of lines to keep between cursor and corner when scrolling
+vim.o.scrolloff = 10
+
+-- number of columns to keep between cursor and corner when scrolling
+vim.o.sidescrolloff = 10
+
+-- enable mouse
+vim.o.mouse = "a"
+
+-- stop complaining when you switch between unsafed buffers
+vim.o.hidden = true
+
+-- show all whitespaces as visible characters
+vim.o.list = true
+
+-- disables swap files
+vim.o.swapfile = false
+
+-- disables backup files
+vim.o.backup = false
+
+-- defines an undodir
+vim.o.undodir = "~/.local/share/nvim/undodir"
+
+-- disable individual undofiles
+vim.o.undofile = false
+
+-- default file encoding
+vim.o.encoding = "utf-8"
+
+-- default file format (line endings)
+vim.o.fileformat = "unix"
+
+-- reads the file in the buffer when modified outside vim
+vim.o.autoread = true
 
 -- auto-resize splits when terminal is resized
 vim.api.nvim_create_autocmd("VimResized", {
@@ -32,10 +76,14 @@ vim.api.nvim_create_autocmd("VimResized", {
   command = "wincmd =",
 })
 
---
--- YANK
---
--- vim.o.clipboard = "unnamedplus" -- uses the system clipboard when yanking
+-- auto-remove trailing white spaces
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  command = ":%s/\\s\\+$//e",
+})
+
+-- uses the system clipboard when yanking
+-- vim.o.clipboard = "unnamedplus"
 
 -- highlight yank selection
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -49,37 +97,57 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- set highlight on search (when you select a word with *)
+vim.o.hlsearch = false
 
---
--- SEARCH SETTINGS
---
-vim.o.hlsearch = false  -- set highlight on search (when you select a word with *)
-vim.o.incsearch = true  -- show partial results while typing during search
-vim.o.ignorecase = true -- case insensitive searching UNLESS /C or capital in search
-vim.o.smartcase = true  -- case insensitive searching UNLESS /C or capital in search
+-- show partial results while typing during search
+vim.o.incsearch = true
 
+-- case insensitive searching UNLESS /C or capital in search
+vim.o.ignorecase = true
 
---
--- COMPLETION OPTIONS
---
-vim.o.complete = "i" -- scan current and included files
-vim.o.completeopt = "menu,menuone,noselect" -- add code completion options
-vim.o.shortmess = "c" -- don't give ins-completion-menu messages
+-- case insensitive searching UNLESS /C or capital in search
+vim.o.smartcase = true
 
+-- scan current and included files
+vim.o.complete = "i"
 
---
--- INDENTATION
---
-vim.o.autoindent = true -- copy indent from current line when starting a new line
-vim.o.wrap = false -- turn off line wrap
-vim.o.backspace = "indent,eol,start" -- backspace through all
--- vim.o.smartindent = true -- ?
--- vim.o.breakindent = true -- ?
-vim.o.tabstop = 4 -- set tab to 4 columns as default for all files
-vim.o.softtabstop = 0 -- ? setting them to 0 makes tabstop be used
-vim.o.shiftwidth = 0 -- ? setting them to 0 makes tabstop be used
-vim.o.expandtab = true -- replace tab with spaces
-vim.o.smarttab = true -- delete a tab-worth spaces at the beginning of a line
+-- add code completion options
+vim.o.completeopt = "menu,menuone,noselect"
+
+-- don't give ins-completion-menu messages
+vim.o.shortmess = "c"
+
+-- copy indent from current line when starting a new line
+vim.o.autoindent = true
+
+-- turn off line wrap
+vim.o.wrap = false
+
+-- backspace through all
+vim.o.backspace = "indent,eol,start"
+
+-- ?
+-- vim.o.smartindent = true
+
+-- ?
+-- vim.o.breakindent = true
+
+-- set tab to 4 columns as default for all files
+vim.o.tabstop = 2
+
+-- ? setting them to 0 makes tabstop be used
+vim.o.softtabstop = 0
+
+-- ? setting them to 0 makes tabstop be used
+vim.o.shiftwidth = 0
+
+-- replace tab with spaces
+vim.o.expandtab = true
+
+-- delete a tab-worth spaces at the beginning of a line
+vim.o.smarttab = true
+
 
 -- set custom tab size for typescript
 -- see ftplugin for better approach https://www.reddit.com/r/neovim/comments/if1usp/how_to_set_tabs_and_spaces_based_on_a_file_type/
@@ -113,9 +181,4 @@ vim.o.smarttab = true -- delete a tab-worth spaces at the beginning of a line
 --vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
 --vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
 
--- auto-remove trailing white spaces
--- vim.api.nvim_create_autocmd("BufWritePre", {
---  pattern = "*",
---  command = ":%s/\\s\\+$//e",
---})
-
+vim.g.netrw_banner = 0
