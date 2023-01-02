@@ -1,0 +1,68 @@
+{
+  // Python
+
+  "python.venvPath": "${workspaceFolder}/../venv",
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "editor.formatOnSave": true,
+  "python.formatting.provider": "black",
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
+    "editor.rulers": [80, 120]
+  },
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintPath": "pylint",
+  "python.linting.lintOnSave": true,
+  "python.sortImports.args": ["--settings-path", "${workspaceFolder}"],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+
+  // Jupyter Notebook
+
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+
+  "[typescriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.minimap.enabled": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "editor.fontFamily": "'Ubuntu Mono'",
+  "editor.fontSize": 17,
+  "explorer.compactFolders": false,
+  "terminal.integrated.fontFamily": "'Ubuntu Mono'",
+  "terminal.integrated.fontSize": 17,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "git.confirmSync": false
+}
