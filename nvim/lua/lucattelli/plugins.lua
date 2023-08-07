@@ -101,5 +101,9 @@ return require('packer').startup(function()
   -- Formatter
   --  use 'lukas-reineke/lsp-format.nvim'
 
+
+  --  Github Copilot
+  use 'github/copilot.vim'
+
 end)
 
